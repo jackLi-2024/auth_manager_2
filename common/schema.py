@@ -33,6 +33,7 @@ for user in users:
         try:
             exec("from resource.{}.view.{} import *".format(user, v))
         except Exception as e:
+            print(str(e))
             # logging.exception(e)
             continue
 
@@ -61,4 +62,4 @@ class QueryMutation(graphene.ObjectType):
             pass
 
 
-schema = graphene.Schema(query=QueryMutation, mutation=QueryMutation)
+schema = graphene.Schema(query=QueryMutation, mutation=QueryMutation, auto_camelcase=True)
