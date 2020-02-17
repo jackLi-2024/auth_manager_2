@@ -62,4 +62,4 @@ class QueryMutation(graphene.ObjectType):
             pass
 
 
-schema = graphene.Schema(query=QueryMutation, mutation=QueryMutation, auto_camelcase=True)
+schema = graphene.Schema(query=QueryMutation, mutation=QueryMutation, auto_camelcase=False)
