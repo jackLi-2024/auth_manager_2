@@ -19,8 +19,6 @@
 
 **请求URL：**
 - ` http://127.0.0.1:4901/graphql_api `
-- ` https://cq-platform.pand-iot.com/auth2/graphql_doc_ui` 线上环境
-- ` https://cq-platform.pand-iot.com/auth2/graphql_api` 线上环境
 
 **请求方式：**
 - POST
