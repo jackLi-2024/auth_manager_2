@@ -28,10 +28,11 @@ class AddDataGroupData(BaseApi, utils.MySQLCrud):
     data_group = Table("data_group")
 
     class Argument:
-        data_group_type = graphene.String(description="数据组类型city/organization")
-        data_group_name = graphene.String(description="数据组名称")
-        data_group_data = graphene.String(description="数据组具体数据")
-        plat = graphene.String(description="指明平台")
+        data_group_id = graphene.String(description="数据组数据id", required=True)
+        data_group_type = graphene.String(description="数据组类型city/organization", required=True)
+        data_group_name = graphene.String(description="数据组名称", required=True)
+        data_group_data = graphene.String(description="数据组具体数据", required=True)
+        plat = graphene.String(description="指明平台", required=True)
         data_group_detail = graphene.String(description="该记录的详细其他信息json传入")
 
     class Return:
@@ -61,7 +62,7 @@ class DeleteDataGroupData(BaseApi, utils.MySQLCrud):
     }
 
     class Argument:
-        data_group_id = graphene.List(graphene.Int, description="数据组数据id")
+        data_group_id = graphene.List(graphene.String, description="数据组数据id", required=True)
 
     class Return:
         succ = graphene.Boolean(description="True: 操作成功 False:操作失败")
@@ -85,11 +86,11 @@ class UpdateDataGroupData(BaseApi, utils.MySQLCrud):
     }
 
     class Argument:
-        data_group_id = graphene.Int(description="数据组数据id", required=True)
-        data_group_type = graphene.String(description="数据组类型city/organization")
-        data_group_name = graphene.String(description="数据组名称")
-        data_group_data = graphene.String(description="数据组具体数据")
-        plat = graphene.String(description="指明平台")
+        data_group_id = graphene.String(description="数据组数据id", required=True)
+        data_group_type = graphene.String(description="数据组类型city/organization", required=True)
+        data_group_name = graphene.String(description="数据组名称", required=True)
+        data_group_data = graphene.String(description="数据组具体数据", required=True)
+        plat = graphene.String(description="指明平台", required=True)
         data_group_detail = graphene.String(description="该记录的详细其他信息json传入")
 
     class Return:
@@ -125,7 +126,7 @@ class SearchDataGroupData(BaseApi, utils.MySQLCrud):
     }
 
     class Argument:
-        data_group_id = graphene.Int(description="数据组数据id")
+        data_group_id = graphene.String(description="数据组数据id")
         data_group_type = graphene.String(description="数据组类型city/organization")
         data_group_name = graphene.String(description="数据组名称")
         data_group_data = graphene.String(description="数据组具体数据")
@@ -134,7 +135,7 @@ class SearchDataGroupData(BaseApi, utils.MySQLCrud):
 
     class Return:
         class ReturnDataGroupData(graphene.ObjectType):
-            data_group_id = graphene.Int(description="数据组数据id")
+            data_group_id = graphene.String(description="数据组数据id")
             data_group_type = graphene.String(description="数据组类型city/organization")
             data_group_name = graphene.String(description="数据组名称")
             data_group_data = graphene.String(description="数据组具体数据")
@@ -149,7 +150,6 @@ class SearchDataGroupData(BaseApi, utils.MySQLCrud):
     def dealer(self):
         self.reset_page_size()
         sql = self.deal_sql(self.data_group.select(where=self.where))
-        print(sql)
         self.execute(sql)
         rows = self.read_all()
         return {"rows": rows}

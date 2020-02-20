@@ -29,8 +29,9 @@ class AddDataPrivilege(BaseApi, utils.MySQLCrud):
 
     class Argument:
         class ArgumentDataPrivilege(graphene.InputObjectType):
-            resource_privilege_id = graphene.Int(description="资源权限id", required=True)
-            data_group_id = graphene.Int(description="数据组数据id", required=True)
+            data_privilege_id = graphene.String(description="数据权限id", required=True)
+            resource_privilege_id = graphene.String(description="资源权限id", required=True)
+            data_group_id = graphene.String(description="数据组数据id", required=True)
             data_privilege_detail = graphene.String(description="该记录的详细其他信息json传入")
 
         array = graphene.List(ArgumentDataPrivilege, description="参数列表")
@@ -70,9 +71,9 @@ class DeleteDataPrivilege(BaseApi, utils.MySQLCrud):
     }
 
     class Argument:
-        data_privilege_id = graphene.Int(description="数据权限id")
-        resource_privilege_id = graphene.Int(description="资源权限id")
-        data_group_id = graphene.Int(description="数据组数据id")
+        data_privilege_id = graphene.String(description="数据权限id")
+        resource_privilege_id = graphene.String(description="资源权限id")
+        data_group_id = graphene.String(description="数据组数据id")
         data_privilege_detail = graphene.String(description="该记录的详细其他信息json传入")
 
     class Return:

@@ -29,10 +29,10 @@ class AddUserPrivilege(BaseApi, utils.MySQLCrud):
 
     class Argument:
         class ArgumentUserPrivilege(graphene.InputObjectType):
-            user_id = graphene.Int(description="用户id")
+            user_id = graphene.String(description="用户id")
             user_no = graphene.String(description="用户编号")
-            plat = graphene.String(description="指明平台")
-            user_group_id = graphene.Int(description="用户组数据id")
+            plat = graphene.String(description="指明平台", required=True)
+            user_group_id = graphene.String(description="用户组数据id", required=True)
             user_detail = graphene.String(description="该记录的详细其他信息json传入")
 
         array = graphene.List(ArgumentUserPrivilege, description="参数列表")
@@ -77,10 +77,10 @@ class DeleteUserPrivilege(BaseApi, utils.MySQLCrud):
     }
 
     class Argument:
-        user_id = graphene.Int(description="用户id")
+        user_id = graphene.String(description="用户id")
         user_no = graphene.String(description="用户编号")
-        plat = graphene.String(description="指明平台")
-        user_group_id = graphene.Int(description="用户组数据id")
+        plat = graphene.String(description="指明平台", required=True)
+        user_group_id = graphene.String(description="用户组数据id", required=True)
         user_detail = graphene.String(description="该记录的详细其他信息json传入")
 
     class Return:
@@ -105,35 +105,35 @@ class SearchUserResourcePrivilege(BaseApi, utils.MySQLCrud):
     like_argument = {}
 
     class Argument:
-        user_id = graphene.Int(description="用户id")
+        user_id = graphene.String(description="用户id")
         user_no = graphene.String(description="用户编号")
         plat = graphene.String(description="指明平台")
-        user_group_id = graphene.Int(description="用户组数据id")
+        user_group_id = graphene.String(description="用户组数据id")
         user_detail = graphene.String(description="该记录的详细其他信息json传入")
-        resource_privilege_id = graphene.Int(description="资源权限id")
+        resource_privilege_id = graphene.String(description="资源权限id")
         resource_privilege_detail = graphene.String(description="该记录的详细其他信息json传入")
         log_id = graphene.Int(description="菜单目录id")
         log_name = graphene.String(description="目录菜单名称,例如“编辑”")
         log_type = graphene.String(description="菜单目录类型枚举值MENU/FUNCTION")
         parent_log_id = graphene.Int(description="父级目录id,默认初级父级id为0")
         identify = graphene.String(description="功能标识,用户自定义")
-        status = graphene.Int(description="菜单目录状态0停用-1启用")
+        status = graphene.String(description="菜单目录状态0停用-1启用")
 
     class Return:
         class ReturnUserResourcePrivilege(graphene.ObjectType):
-            user_id = graphene.Int(description="用户id")
+            user_id = graphene.String(description="用户id")
             user_no = graphene.String(description="用户编号")
             plat = graphene.String(description="指明平台")
-            user_group_id = graphene.Int(description="用户组数据id")
+            user_group_id = graphene.String(description="用户组数据id")
             user_detail = graphene.String(description="该记录的详细其他信息json传入")
-            resource_privilege_id = graphene.Int(description="资源权限id")
+            resource_privilege_id = graphene.String(description="资源权限id")
             resource_privilege_detail = graphene.String(description="该记录的详细其他信息json传入")
             log_id = graphene.Int(description="菜单目录id")
             log_name = graphene.String(description="目录菜单名称,例如“编辑”")
             log_type = graphene.String(description="菜单目录类型枚举值MENU/FUNCTION")
             parent_log_id = graphene.Int(description="父级目录id,默认初级父级id为0")
             identify = graphene.String(description="功能标识,用户自定义")
-            status = graphene.Int(description="菜单目录状态0停用-1启用")
+            status = graphene.String(description="菜单目录状态0停用-1启用")
 
         rows = graphene.List(ReturnUserResourcePrivilege, description="True: 操作成功 False:操作失败")
 
@@ -159,16 +159,16 @@ class SearchUserDataPrivilege(BaseApi, utils.MySQLCrud):
     like_argument = {}
 
     class Argument:
-        user_id = graphene.Int(description="用户id")
+        user_id = graphene.String(description="用户id")
         user_no = graphene.String(description="用户编号")
         plat = graphene.String(description="指明平台")
-        user_group_id = graphene.Int(description="用户组数据id")
+        user_group_id = graphene.String(description="用户组数据id")
         user_detail = graphene.String(description="该记录的详细其他信息json传入")
-        resource_privilege_id = graphene.Int(description="资源权限id")
+        resource_privilege_id = graphene.String(description="资源权限id")
         resource_privilege_detail = graphene.String(description="该记录的详细其他信息json传入")
-        data_privilege_id = graphene.Int(description="数据权限id")
+        data_privilege_id = graphene.String(description="数据权限id")
         data_privilege_detail = graphene.String(description="该记录的详细其他信息json传入")
-        data_group_id = graphene.Int(description="数据组数据id")
+        data_group_id = graphene.String(description="数据组数据id")
         data_group_data = graphene.String(description="数据组具体数据")
         data_group_detail = graphene.String(description="该记录的详细其他信息json传入")
         data_group_name = graphene.String(description="数据组名称")
@@ -178,20 +178,20 @@ class SearchUserDataPrivilege(BaseApi, utils.MySQLCrud):
         log_type = graphene.String(description="菜单目录类型枚举值MENU/FUNCTION")
         parent_log_id = graphene.Int(description="父级目录id,默认初级父级id为0")
         identify = graphene.String(description="功能标识,用户自定义")
-        status = graphene.Int(description="菜单目录状态0停用-1启用")
+        status = graphene.String(description="菜单目录状态0停用-1启用")
 
     class Return:
         class ReturnUserDataPrivilege(graphene.ObjectType):
-            user_id = graphene.Int(description="用户id")
+            user_id = graphene.String(description="用户id")
             user_no = graphene.String(description="用户编号")
             plat = graphene.String(description="指明平台")
-            user_group_id = graphene.Int(description="用户组数据id")
+            user_group_id = graphene.String(description="用户组数据id")
             user_detail = graphene.String(description="该记录的详细其他信息json传入")
-            resource_privilege_id = graphene.Int(description="资源权限id")
+            resource_privilege_id = graphene.String(description="资源权限id")
             resource_privilege_detail = graphene.String(description="该记录的详细其他信息json传入")
-            data_privilege_id = graphene.Int(description="数据权限id")
+            data_privilege_id = graphene.String(description="数据权限id")
             data_privilege_detail = graphene.String(description="该记录的详细其他信息json传入")
-            data_group_id = graphene.Int(description="数据组数据id")
+            data_group_id = graphene.String(description="数据组数据id")
             data_group_data = graphene.String(description="数据组具体数据")
             data_group_detail = graphene.String(description="该记录的详细其他信息json传入")
             data_group_name = graphene.String(description="数据组名称")
@@ -201,7 +201,7 @@ class SearchUserDataPrivilege(BaseApi, utils.MySQLCrud):
             log_type = graphene.String(description="菜单目录类型枚举值MENU/FUNCTION")
             parent_log_id = graphene.Int(description="父级目录id,默认初级父级id为0")
             identify = graphene.String(description="功能标识,用户自定义")
-            status = graphene.Int(description="菜单目录状态0停用-1启用")
+            status = graphene.String(description="菜单目录状态0停用-1启用")
 
         rows = graphene.List(ReturnUserDataPrivilege, description="True: 操作成功 False:操作失败")
 
@@ -227,37 +227,37 @@ class SearchUserGroupResourcePrivilege(BaseApi, utils.MySQLCrud):
     like_argument = {}
 
     class Argument:
-        user_group_id = graphene.Int(description="用户组数据id")
+        user_group_id = graphene.String(description="用户组数据id")
         user_group_type = graphene.String(description="用户组类型role/organazation")
         user_group_name = graphene.String(description="用户组名称")
         plat = graphene.String(description="指明平台")
         user_group_data = graphene.String(description="用户组具体数据")
         user_group_detail = graphene.String(description="该记录的详细其他信息json传入")
-        resource_privilege_id = graphene.Int(description="资源权限id")
+        resource_privilege_id = graphene.String(description="资源权限id")
         resource_privilege_detail = graphene.String(description="该记录的详细其他信息json传入")
         log_id = graphene.Int(description="菜单目录id")
         log_name = graphene.String(description="目录菜单名称,例如“编辑”")
         log_type = graphene.String(description="菜单目录类型枚举值MENU/FUNCTION")
         parent_log_id = graphene.Int(description="父级目录id,默认初级父级id为0")
         identify = graphene.String(description="功能标识,用户自定义")
-        status = graphene.Int(description="菜单目录状态0停用-1启用")
+        status = graphene.String(description="菜单目录状态0停用-1启用")
 
     class Return:
         class ReturnUserGroupResourcePrivilege(graphene.ObjectType):
-            user_group_id = graphene.Int(description="用户组数据id")
+            user_group_id = graphene.String(description="用户组数据id")
             user_group_type = graphene.String(description="用户组类型role/organazation")
             user_group_name = graphene.String(description="用户组名称")
             plat = graphene.String(description="指明平台")
             user_group_data = graphene.String(description="用户组具体数据")
             user_group_detail = graphene.String(description="该记录的详细其他信息json传入")
-            resource_privilege_id = graphene.Int(description="资源权限id")
+            resource_privilege_id = graphene.String(description="资源权限id")
             resource_privilege_detail = graphene.String(description="该记录的详细其他信息json传入")
             log_id = graphene.Int(description="菜单目录id")
             log_name = graphene.String(description="目录菜单名称,例如“编辑”")
             log_type = graphene.String(description="菜单目录类型枚举值MENU/FUNCTION")
             parent_log_id = graphene.Int(description="父级目录id,默认初级父级id为0")
             identify = graphene.String(description="功能标识,用户自定义")
-            status = graphene.Int(description="菜单目录状态0停用-1启用")
+            status = graphene.String(description="菜单目录状态0停用-1启用")
 
         rows = graphene.List(ReturnUserGroupResourcePrivilege, description="True: 操作成功 False:操作失败")
 
@@ -283,17 +283,17 @@ class SearchUserGroupDataPrivilege(BaseApi, utils.MySQLCrud):
     like_argument = {}
 
     class Argument:
-        user_group_id = graphene.Int(description="用户组数据id")
+        user_group_id = graphene.String(description="用户组数据id")
         user_group_type = graphene.String(description="用户组类型role/organazation")
         user_group_name = graphene.String(description="用户组名称")
         plat = graphene.String(description="指明平台")
         user_group_data = graphene.String(description="用户组具体数据")
         user_group_detail = graphene.String(description="该记录的详细其他信息json传入")
-        resource_privilege_id = graphene.Int(description="资源权限id")
+        resource_privilege_id = graphene.String(description="资源权限id")
         resource_privilege_detail = graphene.String(description="该记录的详细其他信息json传入")
-        data_privilege_id = graphene.Int(description="数据权限id")
+        data_privilege_id = graphene.String(description="数据权限id")
         data_privilege_detail = graphene.String(description="该记录的详细其他信息json传入")
-        data_group_id = graphene.Int(description="数据组数据id")
+        data_group_id = graphene.String(description="数据组数据id")
         data_group_data = graphene.String(description="数据组具体数据")
         data_group_detail = graphene.String(description="该记录的详细其他信息json传入")
         data_group_name = graphene.String(description="数据组名称")
@@ -303,21 +303,21 @@ class SearchUserGroupDataPrivilege(BaseApi, utils.MySQLCrud):
         log_type = graphene.String(description="菜单目录类型枚举值MENU/FUNCTION")
         parent_log_id = graphene.Int(description="父级目录id,默认初级父级id为0")
         identify = graphene.String(description="功能标识,用户自定义")
-        status = graphene.Int(description="菜单目录状态0停用-1启用")
+        status = graphene.String(description="菜单目录状态0停用-1启用")
 
     class Return:
         class ReturnUserGroupDataPrivilege(graphene.ObjectType):
-            user_group_id = graphene.Int(description="用户组数据id")
+            user_group_id = graphene.String(description="用户组数据id")
             user_group_type = graphene.String(description="用户组类型role/organazation")
             user_group_name = graphene.String(description="用户组名称")
             plat = graphene.String(description="指明平台")
             user_group_data = graphene.String(description="用户组具体数据")
             user_group_detail = graphene.String(description="该记录的详细其他信息json传入")
-            resource_privilege_id = graphene.Int(description="资源权限id")
+            resource_privilege_id = graphene.String(description="资源权限id")
             resource_privilege_detail = graphene.String(description="该记录的详细其他信息json传入")
-            data_privilege_id = graphene.Int(description="数据权限id")
+            data_privilege_id = graphene.String(description="数据权限id")
             data_privilege_detail = graphene.String(description="该记录的详细其他信息json传入")
-            data_group_id = graphene.Int(description="数据组数据id")
+            data_group_id = graphene.String(description="数据组数据id")
             data_group_data = graphene.String(description="数据组具体数据")
             data_group_detail = graphene.String(description="该记录的详细其他信息json传入")
             data_group_name = graphene.String(description="数据组名称")
@@ -327,7 +327,7 @@ class SearchUserGroupDataPrivilege(BaseApi, utils.MySQLCrud):
             log_type = graphene.String(description="菜单目录类型枚举值MENU/FUNCTION")
             parent_log_id = graphene.Int(description="父级目录id,默认初级父级id为0")
             identify = graphene.String(description="功能标识,用户自定义")
-            status = graphene.Int(description="菜单目录状态0停用-1启用")
+            status = graphene.String(description="菜单目录状态0停用-1启用")
 
         rows = graphene.List(ReturnUserGroupDataPrivilege, description="True: 操作成功 False:操作失败")
 
@@ -353,10 +353,10 @@ class CheckUserDataPrivilege(BaseApi, utils.MySQLCrud):
     like_argument = {}
 
     class Argument:
-        user_id = graphene.Int(description="用户id")
+        user_id = graphene.String(description="用户id")
         user_no = graphene.String(description="用户编号")
         plat = graphene.String(description="指明平台", required=True)
-        data_group_id = graphene.Int(description="数据组数据id", required=True)
+        data_group_id = graphene.String(description="数据组数据id", required=True)
         data_group_data = graphene.String(description="数据组具体数据")
         log_id = graphene.Int(description="菜单目录id", required=True)
 
@@ -386,7 +386,7 @@ class CheckUserResourcePrivilege(BaseApi, utils.MySQLCrud):
     like_argument = {}
 
     class Argument:
-        user_id = graphene.Int(description="用户id")
+        user_id = graphene.String(description="用户id")
         user_no = graphene.String(description="用户编号")
         plat = graphene.String(description="指明平台", required=True)
         log_id = graphene.Int(description="菜单目录id", required=True)

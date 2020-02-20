@@ -14,7 +14,7 @@ IF
 CREATE TABLE
 IF
 	NOT EXISTS `user_group` (
-		`user_group_id` INT ( 11 ) AUTO_INCREMENT COMMENT '用户组数据id',
+		`user_group_id` VARCHAR ( 50 )  NOT NULL COMMENT '用户组数据id',
 		`user_group_type` VARCHAR ( 50 ) COMMENT '用户组类型role/organazation',
 		`user_group_name` VARCHAR ( 50 ) COMMENT '用户组名称',
 		`plat` VARCHAR ( 50 ) COMMENT '指明平台',
@@ -25,9 +25,9 @@ IF
 CREATE TABLE
 IF
 	NOT EXISTS `resource_privilege` (
-		`resource_privilege_id` INT ( 11 ) AUTO_INCREMENT COMMENT '资源权限id',
-		`log_id` INT ( 11 ) COMMENT '目录功能id',
-		`user_group_id` INT ( 11 ) COMMENT '用户组id',
+		`resource_privilege_id` VARCHAR ( 50 ) NOT NULL COMMENT '资源权限id',
+		`log_id` INT ( 11 )  NOT NULL COMMENT '目录功能id',
+		`user_group_id` VARCHAR ( 50 )  NOT NULL COMMENT '用户组id',
 		`resource_privilege_detail` json COMMENT '该记录的详细其他信息json传入',
 		PRIMARY KEY ( `resource_privilege_id` ),
 		FOREIGN KEY (`log_id`) REFERENCES log(`log_id`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -36,7 +36,7 @@ IF
 CREATE TABLE
 IF
 	NOT EXISTS `data_group` (
-		`data_group_id` INT ( 11 ) AUTO_INCREMENT COMMENT '数据组数据id',
+		`data_group_id` VARCHAR ( 50 )  NOT NULL COMMENT '数据组数据id',
 		`data_group_type` VARCHAR ( 50 ) COMMENT '数据组类型city/organization',
 		`data_group_name` VARCHAR ( 50 ) COMMENT '数据组名称',
 		`data_group_data` VARCHAR ( 50 ) COMMENT '数据组具体数据',
@@ -47,9 +47,9 @@ IF
 CREATE TABLE
 IF
 	NOT EXISTS `data_privilege` (
-		`data_privilege_id` INT ( 11 ) AUTO_INCREMENT COMMENT '数据权限id',
-		`resource_privilege_id` INT ( 11 ) COMMENT '资源权限id',
-		`data_group_id` INT ( 11 ) COMMENT '数据组数据id',
+		`data_privilege_id` VARCHAR ( 50 ) NOT NULL  COMMENT '数据权限id',
+		`resource_privilege_id` VARCHAR ( 50 )  NOT NULL COMMENT '资源权限id',
+		`data_group_id` VARCHAR ( 50 )  NOT NULL COMMENT '数据组数据id',
 		`data_privilege_detail` json COMMENT '该记录的详细其他信息json传入',
 		PRIMARY KEY ( `data_privilege_id` ),
 		FOREIGN KEY (`resource_privilege_id`) REFERENCES resource_privilege(`resource_privilege_id`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -58,10 +58,10 @@ IF
 CREATE TABLE
 IF
 	NOT EXISTS `user_privilege` (
-		`user_id` INT ( 11 ) COMMENT '用户id',
+		`user_id` VARCHAR ( 50 ) COMMENT '用户id',
 		`user_no` VARCHAR ( 50 ) COMMENT '用户编号',
 		`plat` VARCHAR ( 50 ) COMMENT '指明平台',
-		`user_group_id` INT ( 11 ) COMMENT '用户组数据id',
+		`user_group_id` VARCHAR ( 50 )  NOT NULL COMMENT '用户组数据id',
 	    `user_detail` json COMMENT '该记录的详细其他信息json传入',
 	    FOREIGN KEY (`user_group_id`) REFERENCES user_group(`user_group_id`) ON DELETE CASCADE ON UPDATE CASCADE
 	) COMMENT = '用户' ENGINE = INNODB DEFAULT CHARSET = utf8;

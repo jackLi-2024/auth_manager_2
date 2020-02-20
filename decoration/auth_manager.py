@@ -238,7 +238,14 @@ def test1():
             "app_id": "test"
         }
     }
-    result = AuthToken().GenerateToken(condition=condition)
+    auth = Auth()
+    result = auth.GenerateToken(condition=condition)
+    print(result)
+    to = result["data"]["GenerateToken"]["access_token"]
+    condition = {
+        "condition": {"token": to}
+    }
+    result = auth.ValidateToken(condition=condition)
     print(result)
 
 
@@ -248,5 +255,5 @@ def test2():
 
 
 if __name__ == '__main__':
-    # test1()
-    test2()
+    test1()
+    # test2()

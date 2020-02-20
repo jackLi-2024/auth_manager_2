@@ -28,11 +28,11 @@ class AddMenu(BaseApi, utils.MySQLCrud):
     log = Table("log")
 
     class Argument:
-        log_type = graphene.String(description="菜单目录类型枚举值MENU/FUNCTION")
-        log_name = graphene.String(description="目录菜单名称,例如“编辑”")
+        log_type = graphene.String(description="菜单目录类型枚举值MENU/FUNCTION",required=True)
+        log_name = graphene.String(description="目录菜单名称,例如“编辑”",required=True)
         identify = graphene.String(description="功能标识,用户自定义")
-        status = graphene.Int(description="菜单目录状态0停用-1启用")
-        plat = graphene.String(description="指明平台")
+        status = graphene.Int(description="菜单目录状态0停用-1启用",required=True)
+        plat = graphene.String(description="指明平台",required=True)
         parent_log_id = graphene.Int(description="父级目录id,默认初级父级id为0")
         log_detail = graphene.String(description="该记录的详细其他信息json传入")
 
@@ -45,7 +45,7 @@ class AddMenu(BaseApi, utils.MySQLCrud):
     def dealer(self):
         where = (self.log.log_id == self.arguments.get("parent_log_id")) & (self.log.log_type == "'MENU'")
         sql1 = self.deal_sql(self.log.select(where=where))
-        print(sql1)
+
         self.execute(sql1)
 
         if self.arguments.get("parent_log_id") == 0:

@@ -29,8 +29,9 @@ class AddResourcePrivilege(BaseApi, utils.MySQLCrud):
 
     class Argument:
         class ArgumentResourcePrivilege(graphene.InputObjectType):
+            resource_privilege_id = graphene.String(description="资源权限id", required=True)
             log_id = graphene.Int(description="目录功能id", required=True)
-            user_group_id = graphene.Int(description="用户组id", required=True)
+            user_group_id = graphene.String(description="用户组id", required=True)
             resource_privilege_detail = graphene.String(description="该记录的详细其他信息json传入")
 
         array = graphene.List(ArgumentResourcePrivilege, description="参数列表")
@@ -69,9 +70,9 @@ class DeleteResourcePrivilege(BaseApi, utils.MySQLCrud):
     }
 
     class Argument:
-        resource_privilege_id = graphene.Int(description="资源权限id")
+        resource_privilege_id = graphene.String(description="资源权限id")
         log_id = graphene.Int(description="目录功能id")
-        user_group_id = graphene.Int(description="用户组id", required=True)
+        user_group_id = graphene.String(description="用户组id", required=True)
         resource_privilege_detail = graphene.String(description="该记录的详细其他信息json传入")
 
     class Return:

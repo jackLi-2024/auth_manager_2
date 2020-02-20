@@ -1,4 +1,3 @@
---用户组视图
 DROP VIEW IF EXISTS  user_group_view;
 CREATE VIEW user_group_view AS SELECT
 user_group_name,
@@ -11,7 +10,7 @@ GROUP BY
 	plat,
 	user_group_type;
 
---用户资源权限查询
+
 DROP VIEW IF EXISTS  user_resource_privilege_view;
 CREATE VIEW user_resource_privilege_view AS SELECT
 user_privilege.*,
@@ -34,7 +33,7 @@ WHERE
 	AND log.plat = user_privilege.plat;
 
 
---用户资源数据权限查询
+
 DROP VIEW IF EXISTS  user_data_privilege_view;
 CREATE VIEW user_data_privilege_view AS SELECT
 user_privilege.*,
@@ -68,7 +67,7 @@ WHERE
 	AND data_group.data_group_id = data_privilege.data_group_id
 	AND data_group.plat = user_privilege.plat;
 
---用户组资源数据权限查询
+
 DROP VIEW IF EXISTS  user_group_data_privilege_view;
 CREATE VIEW user_group_data_privilege_view AS SELECT
 user_group.*,
@@ -103,7 +102,7 @@ WHERE
 	AND data_group.plat = user_group.plat;
 
 
---用户组资源权限查询
+
 DROP VIEW IF EXISTS  user_group_resource_privilege_view;
 CREATE VIEW user_group_resource_privilege_view AS SELECT
 user_group.*,

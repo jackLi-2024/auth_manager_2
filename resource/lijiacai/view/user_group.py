@@ -28,11 +28,11 @@ class AddUserGroupData(BaseApi, utils.MySQLCrud):
     user_group = Table("user_group")
 
     class Argument:
-        user_group_id = graphene.Int(description="用户组数据id")
-        user_group_type = graphene.String(description="用户组类型role/organazation")
-        user_group_name = graphene.String(description="用户组名称")
-        plat = graphene.String(description="指明平台")
-        user_group_data = graphene.String(description="用户组具体数据")
+        user_group_id = graphene.String(description="用户组数据id", required=True)
+        user_group_type = graphene.String(description="用户组类型role/organazation", required=True)
+        user_group_name = graphene.String(description="用户组名称", required=True)
+        plat = graphene.String(description="指明平台", required=True)
+        user_group_data = graphene.String(description="用户组具体数据", required=True)
         user_group_detail = graphene.String(description="该记录的详细其他信息json传入")
 
     class Return:
@@ -71,7 +71,7 @@ class DeleteUserGroupData(BaseApi, utils.MySQLCrud):
     }
 
     class Argument:
-        user_group_id = graphene.List(graphene.Int, description="用户组数据id")
+        user_group_id = graphene.List(graphene.String, description="用户组数据id", required=True)
 
     class Return:
         succ = graphene.Boolean(description="True: 操作成功 False:操作失败")
@@ -96,11 +96,11 @@ class UpdateUserGroupData(BaseApi, utils.MySQLCrud):
     }
 
     class Argument:
-        user_group_id = graphene.Int(description="用户组数据id")
-        user_group_type = graphene.String(description="用户组类型role/organazation")
-        user_group_name = graphene.String(description="用户组名称")
-        plat = graphene.String(description="指明平台")
-        user_group_data = graphene.String(description="用户组具体数据")
+        user_group_id = graphene.String(description="用户组数据id", required=True)
+        user_group_type = graphene.String(description="用户组类型role/organazation", required=True)
+        user_group_name = graphene.String(description="用户组名称", required=True)
+        plat = graphene.String(description="指明平台", required=True)
+        user_group_data = graphene.String(description="用户组具体数据", required=True)
         user_group_detail = graphene.String(description="该记录的详细其他信息json传入")
 
     class Return:
@@ -145,7 +145,7 @@ class SearchUserGroupData(BaseApi, utils.MySQLCrud):
     }
 
     class Argument:
-        user_group_id = graphene.Int(description="用户组数据id")
+        user_group_id = graphene.String(description="用户组数据id")
         user_group_type = graphene.String(description="用户组类型role/organazation")
         user_group_name = graphene.String(description="用户组名称")
         plat = graphene.String(description="指明平台")
@@ -154,7 +154,7 @@ class SearchUserGroupData(BaseApi, utils.MySQLCrud):
 
     class Return:
         class ReturnUserGroupData(graphene.ObjectType):
-            user_group_id = graphene.Int(description="用户组数据id")
+            user_group_id = graphene.String(description="用户组数据id")
             user_group_type = graphene.String(description="用户组类型role/organazation")
             user_group_name = graphene.String(description="用户组名称")
             plat = graphene.String(description="指明平台")
